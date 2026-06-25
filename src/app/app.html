@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>📩 Message Manager</h1>
+
+  <form (ngSubmit)="submitMessage()" class="form">
+    <input [(ngModel)]="newMessage" name="message" placeholder="Enter a message" required />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  @if (messages().length > 0) {
+  <h2>Stored Messages</h2>
+  <ul>
+    @for (msg of messages(); track $index) {
+    <li><span class="index">{{ $index }}</span> - {{ msg }} <button type="submit" (click)="deleteMessage($index)"
+        class="btn btn-danger">D</button></li>
+    }
+  </ul>
+
+  <!-- <form (ngSubmit)="deleteMessage()" class="form-inline">
+      <input [(ngModel)]="deleteIndex" name="index" type="number" placeholder="Index to delete" />
+      <button type="submit" class="btn btn-danger">Delete Message</button>
+    </form> -->
+
+  <button (click)="deleteAll()" class="btn btn-warning">Delete All Messages</button>
+  } @else {
+  <p class="empty">No messages available.</p>
+  }
+</div>
